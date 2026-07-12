@@ -2,10 +2,13 @@ package br.com.zenon;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Main {
-    static void main() {
+    static void main() throws IOException {
+        var transactions = TransactionIngestor.getTransactionsByLine("zenon-fraud-detector/data/dataset.csv", 10);
 
         Transaction transaction1 = new Transaction(1L, TransactionType.PAYMENT, new BigDecimal("9839.64"), new TransactionCustomer("C1231006815", new BigDecimal("170136.0"), new BigDecimal("160296.36")), new TransactionCustomer("M1979787155", new BigDecimal("0.0"), new BigDecimal("0.0")), false, false);
 
@@ -20,5 +23,10 @@ public class Main {
         IO.println("");
         IO.println("Transaction 2");
         IO.println(gson.toJson(transaction2));
+
+
+        IO.println("");
+        IO.println(transactions);
+
     }
 }
