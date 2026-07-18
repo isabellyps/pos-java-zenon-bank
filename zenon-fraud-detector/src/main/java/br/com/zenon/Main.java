@@ -1,7 +1,5 @@
 package br.com.zenon;
 
-import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
