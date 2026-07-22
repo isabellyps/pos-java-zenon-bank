@@ -3,6 +3,7 @@ package br.com.zenon;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     static void main() throws IOException {
@@ -35,5 +36,30 @@ public class Main {
 
         IO.println("Exceptions");
         IO.println(transactions);
+
+
+        IO.println("");
+        IO.println("************************* TAREFA 05 *************************");
+
+        var fraudAnalyzer = new FraudAnalyzer(transactionsByLine);
+
+        long countFraud = fraudAnalyzer.countTransactionsFraud();
+        IO.println("Quantidade de transações isFraud === true: " + countFraud);
+
+        List<BigDecimal> highValueFraud = fraudAnalyzer.findHighValueFraud(3);
+        IO.println("As 3 fraudes com maior valor:");
+        highValueFraud.forEach(amount -> IO.println(amount.toBigInteger()));
+
+        List<String> clientHighValueFraud = fraudAnalyzer.findClientHighValueFraud(5);
+        IO.println("Os 5 maiores suspeitos: ");
+        IO.println(clientHighValueFraud);
+
+        BigDecimal totalValueFraud = fraudAnalyzer.totalValueFraud();
+        IO.println("Valor total fraude: ");
+        IO.println(totalValueFraud);
+
+        Map<TransactionType, Long> fraudByType = fraudAnalyzer.countFraudByType();
+        IO.println("Total de fraude por tipo:");
+        IO.println(fraudByType);
     }
 }

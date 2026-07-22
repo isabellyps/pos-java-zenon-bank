@@ -23,7 +23,7 @@ public class TransactionIngestor {
 
         try (FileChannel _ = FileChannel.open(transactionsData, StandardOpenOption.READ)) {
             List<String> transactionsList = Files.readAllLines(transactionsData);
-            return transactionsList.stream().skip(1).limit(1000).map(this::parseLine).filter(Optional::isPresent)
+            return transactionsList.stream().skip(1).limit(50000).map(this::parseLine).filter(Optional::isPresent)
                     .map(Optional::get)
                     .toList();
 
