@@ -89,5 +89,15 @@ public class Main {
         long endTimeFindMap = System.nanoTime();
 
         IO.println("Tempo de busca com Map (ms): " + (endTimeFindMap - startTimeFindMap) / 1_000_000.0);
+
+        IO.println("");
+        IO.println("************************* TAREFA 07 *************************");
+
+        var transactionReport = new TransactionReport();
+        TransactionReport.TransactionValues transactionsNIO = transactionReport.readNIO("zenon-fraud-detector/data/dataset.csv");
+
+        IO.println("Total de linhas: " + transactionsNIO.totalTransactions());
+        IO.println("Total de fraudes: " + transactionsNIO.totalFrauds());
+        IO.println("Valor total transacionado: " + transactionsNIO.totalAmount());
     }
 }
