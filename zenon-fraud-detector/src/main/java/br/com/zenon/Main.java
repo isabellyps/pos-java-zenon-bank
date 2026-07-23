@@ -61,5 +61,33 @@ public class Main {
         Map<TransactionType, Long> fraudByType = fraudAnalyzer.countFraudByType();
         IO.println("Total de fraude por tipo:");
         IO.println(fraudByType);
+
+        IO.println("");
+        IO.println("************************* TAREFA 06 *************************");
+
+        var benchmark = new TransactionListRepository(transactionsByLine);
+
+        benchmark.transactionByOriginName("C12345");
+        benchmark.transactionByOriginName("C1231006815");
+
+        String timeFindTransaction = "C1868032458";
+
+        long startTimeFind = System.nanoTime();
+
+        benchmark.transactionByOriginName(timeFindTransaction);
+
+        long endTimeFind = System.nanoTime();
+
+        IO.println("Tempo de busca com List (ms): " + (endTimeFind - startTimeFind) / 1_000_000.0);
+
+        var benchmarkMap = new TransactionMapRepository(transactionsByLine);
+
+        long startTimeFindMap = System.nanoTime();
+
+        benchmarkMap.transactionByOriginName(timeFindTransaction);
+
+        long endTimeFindMap = System.nanoTime();
+
+        IO.println("Tempo de busca com Map (ms): " + (endTimeFindMap - startTimeFindMap) / 1_000_000.0);
     }
 }
